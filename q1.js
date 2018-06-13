@@ -4,22 +4,15 @@ function sortByString(s, t){
     //hash to store letters which will later increment
     let hash={};
     let result="";
-    
-    //put t letters in hash
-    for(let i=0; i<t.length; i++){
-      hash[t[i]]=0
-    }
-    
-    //count s letters according to t
+        
+    //count s letters appearence
     for(let i=0; i<s.length; i++){
-      if(hash[s[i]]==0 || hash[s[i]] > 0){
-        hash[s[i]]++
-      }
+      hash[s[i]] = hash[s[i]] ? hash[s[i]]+1:1;
     }
-    
-    //construct new string
-    for(key in hash) {
-      result+=key.repeat(hash[key])
+
+    //Find matching letters in t and add them to the string
+    for(let i=0; i<t.length; i++){
+      if(hash[t[i]]) result+=t[i].repeat(hash[t[i]])
     }
     
     return result;
